@@ -27,7 +27,7 @@ def get_pronunciation_analysis_prompt(expected_text=None):
   * Analyze the potential reason for the error (if possible). This could include factors like phoneme confusion, stress or intonation issues, etc.
 
   Additionally, if you can identify any broader trends in the pronunciation errors (e.g., consistent vowel mispronunciations), please mention them.
-
+  Also, you should not give the Passage A as the extracted text, you should give the Passage B as extracted text in the below format.
   Response:
 
   You should provide me the response for this prompt in the form of a JSON. Strictly you should follow the JSON format as shown below:
