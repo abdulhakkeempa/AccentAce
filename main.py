@@ -5,9 +5,10 @@ from src.gemini import Gemini
 
 load_dotenv()
 
-gemini = Gemini(api_key=os.environ['GOOGLE_API_KEY'])
-gemini.infer("Translate the audio to english text.", "files/w1b3thksnl7f")
-
+gemini = Gemini(api_key=os.environ['GEMINI_API_KEY'])
+# gemini.infer("Translate the audio to english text.", "files/w1b3thksnl7")
+poem = gemini.generate_content("Write me a poem in markdown format.")
+print(poem)
 # genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 # sample_file = genai.upload_file(path="./audio/script.m4a",
