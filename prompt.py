@@ -53,7 +53,7 @@ def get_pronunciation_analysis_prompt(expected_text=None):
   pronounced_word: The word/phrase as it appears in the extracted text.
   remarks: Any additional remarks or analysis on the pronunciation errors, suggestions and improvements required.
 
-  3. **Submit Response:** Submit the response in the specified JSON format. You should not alter any other part of the prompt.
+  3. **Submit Response:** Submit the response in the specified JSON format. You should not alter any other part of the response.
     
   """
   return prompt
