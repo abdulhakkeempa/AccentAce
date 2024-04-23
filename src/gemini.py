@@ -17,8 +17,11 @@ class Gemini:
         self.upload_files_display_names.append(display_name)
 
     def get_file(self, file_name):  
-        file = genai.get_file(name=file_name)
-        print(f"Retrieved file '{file.display_name}' as: {file.uri}")
+        try:
+            file = genai.get_file(name=file_name)
+            print(f"Retrieved file '{file.display_name}' as: {file.uri}")
+        except Exception as e:
+            raise Exception(f"{e}")
         return file
     
     def print_files_uploaded(self):
@@ -32,3 +35,6 @@ class Gemini:
     def infer(self, prompt, file_name):
         file = self.get_file(file_name)
         self.run(prompt, file)
+
+    def generate_content(self, prompt):
+        return self.model.generate_content([prompt]).text
