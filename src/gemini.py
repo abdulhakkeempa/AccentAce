@@ -7,14 +7,15 @@ class Gemini:
         self.upload_files = []
         self.upload_files_display_names = []
   
-    def upload_file(self, file_path, display_name):
+    def upload_file(self, file_path, display_name) -> str:
         uploaded_file = genai.upload_file(
                         path=file_path,
                         display_name=display_name
                     )
         print(f"Uploaded file '{uploaded_file.display_name}' as: {uploaded_file.uri}")
-        self.files_uploaded.append(uploaded_file)  
+        self.upload_files.append(uploaded_file.name)  
         self.upload_files_display_names.append(display_name)
+        return uploaded_file.name
 
     def get_file(self, file_name):  
         try:
@@ -29,15 +30,16 @@ class Gemini:
             print(f"Display Name: {displayName} => File Name: {fileName}")
 
     @handle_resource_exhausted
-    def run(self, prompt, file):
+    def run(self, prompt, file) -> str:
         response = self.model.generate_content([prompt, file])
         return response.text
 
     @handle_resource_exhausted
-    def generate_content(self, prompt):
+    def generate_content(self, prompt) -> str:
         return self.model.generate_content([prompt]).text
 
-    def infer(self, prompt, file_name):
+    def infer(self, prompt, file_name) -> str:
         file = self.get_file(file_name)
-        self.run(prompt, file)
+        result = self.run(prompt, file)
+        return result
 
