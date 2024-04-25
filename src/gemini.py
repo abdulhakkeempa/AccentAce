@@ -1,5 +1,5 @@
 import google.generativeai as genai
-from exception import handle_resource_exhausted
+from .exception import handle_resource_exhausted
 class Gemini:
     def __init__(self, api_key):
         genai.configure(api_key=api_key)
