@@ -1,11 +1,13 @@
 from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Form
 
 from dotenv import load_dotenv
 import os
 
 from src.gemini import Gemini
 from src.prompt import speech_prompt
+from prompt import get_pronunciation_analysis_prompt
 
 from slowapi.errors import RateLimitExceeded
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -48,7 +50,7 @@ def root(request: Request) -> dict:
 
 @app.post("/analyse_voice")
 @limiter.limit("3/minute")
-async def analyse_voice(request: Request, audio_file: UploadFile=File(...)) -> dict:
+async def analyse_voice(request: Request, speech_text: str = Form(...), audio_file: UploadFile=File(...)) -> dict:
     out_file_path = f"uploads/{audio_file.filename}"
     async with aiofiles.open(out_file_path, 'wb') as out_file:
         content = await audio_file.read()  
@@ -56,7 +58,10 @@ async def analyse_voice(request: Request, audio_file: UploadFile=File(...)) -> d
 
     try:
         uploaded_file = gemini.upload_file(out_file_path, audio_file.filename)
-        result = gemini.infer("Translate the audio to english text.", uploaded_file)
+
+        prompt = get_pronunciation_analysis_prompt(speech_text)
+
+        result = gemini.infer(prompt, uploaded_file)
         return {"result": result}
     except Exception as e:
         return {"error": f"An error occurred: {str(e)}", "status": 500}

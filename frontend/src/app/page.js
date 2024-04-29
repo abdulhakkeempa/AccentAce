@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [audioFile, setAudioFile] = useState(null);
+  const [text, setText] = useState('');
 
   const handleRecording = (file) => {
     setAudioFile(file);
@@ -15,9 +16,9 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
-      <Text />
+      <Text text={text} setText={setText} />
       <Recorder onRecording={handleRecording} />
-      <Response audioFile={audioFile} />
+      <Response audioFile={audioFile} speechText={text} />
     </div>
   );
 }

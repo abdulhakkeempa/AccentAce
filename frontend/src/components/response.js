@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from 'react';
 
-export default function Response({ audioFile }) {
+export default function Response({ audioFile, speechText }) {
   const [response, setResponse] = useState('');
 
   useEffect(() => {
     if (audioFile) {
-
+      console.log(speechText);
       const formData = new FormData();
       formData.append('audio_file', audioFile, 'audio_file.mp3');
+      formData.append('speech_text', speechText);
 
+      console.log(formData);
 
       fetch('http://127.0.0.1:8000/analyse_voice', {
         method: 'POST',

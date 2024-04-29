@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function Text() {
-  const [text, setText] = useState('');
+export default function Text({ text, setText }) {
 
   useEffect(() => {
     fetch('http://localhost:8000')
