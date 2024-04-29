@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react';
 export default function Text({ text, setText }) {
 
   useEffect(() => {
-    fetch('http://localhost:8000')
-      .then(response => response.json())
-      .then(data => setText(data.speech));
-  }, []);
+    if (typeof window !== 'undefined') {
+      fetch('http://localhost:8000')
+        .then(response => response.json())
+        .then(data => setText(data.speech));
+    }
+    }, []);
 
   return (
     <div className="p-4">

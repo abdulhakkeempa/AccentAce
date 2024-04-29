@@ -18,7 +18,7 @@ export default function Home() {
     <div className="container mx-auto p-4">
       <Text text={text} setText={setText} />
       <Recorder onRecording={handleRecording} />
-      <Response audioFile={audioFile} speechText={text} />
+      <Response audioFile={audioFile} speechText={text}/>
     </div>
   );
 }

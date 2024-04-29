@@ -38,7 +38,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 gemini = Gemini(api_key=os.environ['GEMINI_API_KEY'])
 
 @app.get("/")
-@limiter.limit("3/minute")
+@limiter.limit("5/minute")
 def root(request: Request) -> dict:
     prompt = speech_prompt()
     try:
