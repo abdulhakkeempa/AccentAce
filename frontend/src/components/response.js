@@ -18,7 +18,7 @@ export default function Response({ audioFile, speechText }) {
         method: 'POST',
         body: formData,
       })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => setResponse(data));
     }
   }, [audioFile]);

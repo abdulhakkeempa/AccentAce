@@ -8,13 +8,14 @@ import os
 from src.gemini import Gemini
 from src.prompt import speech_prompt
 from prompt import get_pronunciation_analysis_prompt
+from text_processing import remove_substrings
 
 from slowapi.errors import RateLimitExceeded
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 
 import aiofiles
-
+import json
 
 load_dotenv()
 
@@ -62,7 +63,9 @@ async def analyse_voice(request: Request, speech_text: str = Form(...), audio_fi
         prompt = get_pronunciation_analysis_prompt(speech_text)
 
         result = gemini.infer(prompt, uploaded_file)
-        return {"result": result}
+        result = remove_substrings(result, ["```", "json"])
+        result = json.loads(result)
+        return result
     except Exception as e:
         return {"error": f"An error occurred: {str(e)}", "status": 500}
 
