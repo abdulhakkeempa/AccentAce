@@ -68,6 +68,36 @@ body {
   border: none;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  background-color: #ff2b1c; /* Green */
+  background-color: #FF3131; 
   color: white;
+}
+
+.record-button-cancel {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  background-color: #5e5e5e; 
+  color: white;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 49, 49, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 49, 49, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 49, 49, 0);
+  }
+}
+
+.record-button-recording {
+  animation: pulse 2s infinite;
 }

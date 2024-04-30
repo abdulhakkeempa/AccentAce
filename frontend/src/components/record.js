@@ -22,19 +22,19 @@ export default function Recorder({ onRecording }) {
     },
   );
 
-  const start = () => {
-    if (isBlocked) {
-      console.log('Permission Denied');
-    } else {
+  const startRecording = () => {
+    if (!isBlocked) {
       Mp3Recorder
         .start()
         .then(() => {
           setIsRecording(true);
         }).catch((e) => console.error(e));
+    } else {
+      console.log('Permission Denied');
     }
   };
 
-  const stop = () => {
+  const stopRecording = () => {
     Mp3Recorder
       .stop()
       .getMp3()
@@ -48,18 +48,33 @@ export default function Recorder({ onRecording }) {
       }).catch((e) => console.log(e));
   };
 
+  const cancelRecording = () => {
+    Mp3Recorder
+      .stop()
+      .getMp3()
+      .then(async ([buffer, blob]) => {
+        setIsRecording(false);
+      }).catch((e) => console.log(e));
+  };
+
   return (
-    <div className="p-4">
-      <button onClick={start} disabled={isRecording} className="record-button">
-        {isRecording ? <i class="bi bi-stop-fill"></i> : <i class="bi bi-mic-fill"></i>}
-      </button>
-      <button onClick={stop} disabled={!isRecording} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Stop
-      </button>
-      <div>
-        <p className='text-sm text-slate-500	'>Press the <span><i class="bi bi-mic-fill"></i></span> button and start reading the text above.</p>
+    <div className="p-4 flex flex-col items-center">
+      <div className='mb-2 flex justify-center space-x-4'>
+        <button onClick={isRecording ? stopRecording : startRecording} className={`record-button ${isRecording ? 'record-button-recording' : ''}`}>
+          {isRecording ? <i class="bi bi-stop-fill"></i> : <i class="bi bi-mic-fill"></i>}
+        </button>
+        {isRecording && (
+          <button onClick={cancelRecording} className="record-button-cancel">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        )}
       </div>
-      <audio src={blobURL} controls="controls" />
+      <div>
+        <p className='text-sm text-slate-500'>Press the <span><i class="bi bi-mic-fill"></i></span> button and start reading the text above.</p>
+      </div>
+      <div  className='p-5'>
+        <audio src={blobURL} controls="controls" />
+      </div>
     </div>
   );
 }
