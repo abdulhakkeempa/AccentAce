@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -49,12 +50,15 @@ export default function Recorder({ onRecording }) {
 
   return (
     <div className="p-4">
-      <button onClick={start} disabled={isRecording} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Start
+      <button onClick={start} disabled={isRecording} className="record-button">
+        {isRecording ? <i class="bi bi-stop-fill"></i> : <i class="bi bi-mic-fill"></i>}
       </button>
       <button onClick={stop} disabled={!isRecording} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Stop
       </button>
+      <div>
+        <p className='text-sm text-slate-500	'>Press the <span><i class="bi bi-mic-fill"></i></span> button and start reading the text above.</p>
+      </div>
       <audio src={blobURL} controls="controls" />
     </div>
   );

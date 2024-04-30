@@ -29,7 +29,7 @@ body {
 
 .script-box {
   color: #171717;
-  background-color: #D4D4D4;
+  background-color: #e2e2e2;
   border-radius: 10px;
 }
 
@@ -53,5 +53,21 @@ body {
 
 .play-button.stop {
   background-color: #f44336; /* Red */
+  color: white;
+}
+
+
+
+.record-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  background-color: #ff2b1c; /* Green */
   color: white;
 }
