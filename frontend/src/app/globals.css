@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 2055;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,17 +17,41 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: #030712;
+  background: #f9f9f9;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.script-box {
+  color: #171717;
+  background-color: #D4D4D4;
+  border-radius: 10px;
+}
+
+
+.play-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.play-button.play {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.play-button.stop {
+  background-color: #f44336; /* Red */
+  color: white;
 }
