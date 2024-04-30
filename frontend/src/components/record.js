@@ -72,9 +72,11 @@ export default function Recorder({ onRecording }) {
       <div>
         <p className='text-sm text-slate-500'>Press the <span><i class="bi bi-mic-fill"></i></span> button and start reading the text above.</p>
       </div>
-      <div  className='p-5'>
-        <audio src={blobURL} controls="controls" />
-      </div>
+      {blobURL && (
+        <div  className='p-5'>
+          <audio src={blobURL} controls="controls" />
+        </div>
+      )}
     </div>
   );
 }

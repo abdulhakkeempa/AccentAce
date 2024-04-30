@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4 h-screen flex flex-col items-center">
-      <Title title="Voice to Text" subtitle="Your personal pronounciation helper ⚡"/>
+      <Title title="Ace your Accent ✨" subtitle="Your personal pronounciation helper ⚡"/>
       <Text text={text} setText={setText} />
       <Recorder onRecording={handleRecording} />
       <Response audioFile={audioFile} speechText={text}/>

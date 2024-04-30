@@ -18,6 +18,10 @@ export default function Text({ text, setText }) {
   const speakText = () => {
     const utterance = new SpeechSynthesisUtterance(text);
 
+    utterance.onend = () => {
+      setIsSpeaking(false);
+    };
+  
     if (window.speechSynthesis.speaking) {
       window.speechSynthesis.cancel();
       setIsSpeaking(false);
