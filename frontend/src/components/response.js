@@ -36,7 +36,7 @@ export default function Response({ audioFile, speechText, realSpeech }) {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Response from API:</h1>
+      <h1 className="text-2xl mb-4 font-semibold">Your overall pronounciation score is: <span className='bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text font-bold'> 7.2</span></h1>
       {response && (
         <>
           <p className="text-lg"><strong>Extracted Text:</strong> {response.extracted_text.split(' ').map((word, index) => newWords.includes(word) ? <span key={index} className="text-red-600">{word}</span> : word).join(' ')}</p>
