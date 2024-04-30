@@ -44,6 +44,7 @@ def get_pronunciation_analysis_prompt(expected_text=None):
         "pronounced_word": "string",
       }
     ],
+    "score": Overall score for the pronounciation of the voice out of 10.0,
     "remarks": "The remark the speaker should be provided for the pronunciation of the word"
   }""" + """
 

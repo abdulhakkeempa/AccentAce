@@ -15,12 +15,8 @@ export default function Text({ text, setText }) {
     }
     }, []);
 
-
   const speakText = () => {
-
-    const test = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
-
-    const utterance = new SpeechSynthesisUtterance(test);
+    const utterance = new SpeechSynthesisUtterance(text);
 
     if (window.speechSynthesis.speaking) {
       window.speechSynthesis.cancel();
@@ -33,15 +29,17 @@ export default function Text({ text, setText }) {
   
   return (
     <div className="p-4 flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Text from API:</h1>
-      <div className='max-w-lg script-box p-7 pr-4 flex'>
-        <div>
-          <p className="text-justify text-base">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+      <h1 className="text-2xl font-semibold mb-4">Text for analysing your pronounciation 📖</h1>
+      <div className='flex items-start'>
+        <div className='max-w-lg script-box p-7'>
+          <div>
+            <p className="text-justify text-base">{text}</p>
+          </div>
         </div>
-        <div className='ml-3'>
-          <button onClick={speakText} className={`play-button ${isSpeaking ? 'stop' : 'play'}`}>
-            {isSpeaking ? '\u25A0' : '\u25B6'}
-          </button>
+        <div className='ml-3 lg:pt-6'>
+            <button onClick={speakText} className={`play-button ${isSpeaking ? 'stop' : 'play'}`}>
+              {isSpeaking ? <i class="bi bi-stop-fill"></i> : <i class="bi bi-play-fill"></i>}
+            </button>
         </div>
       </div>
     </div>
