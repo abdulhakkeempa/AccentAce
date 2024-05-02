@@ -8,6 +8,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 RUN mkdir /code/uploads
 
+RUN chmod 777 /code/uploads
+
 COPY ./ /code/
 
 CMD ["python" , "app.py"]
