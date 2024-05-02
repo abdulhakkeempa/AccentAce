@@ -7,7 +7,7 @@ __pycache__/
 /audio
 *.wav
 *.json
-/uploads
+*/uploads
 
 # C extensions
 *.so
