@@ -15,7 +15,7 @@ export default function Response({ audioFile, speechText }) {
       formData.append('audio_file', audioFile, 'audio_file.mp3');
       formData.append('speech_text', speechText);
 
-      fetch('http://127.0.0.1:8000/analyse_voice', {
+      fetch(process.env.NEXT_PUBLIC_API_URL+'/analyse_voice', {
         method: 'POST',
         body: formData,
       }, )

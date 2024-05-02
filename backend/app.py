@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 import os
 
 from src.gemini import Gemini
-from src.prompt import speech_prompt
-from prompt import get_pronunciation_analysis_prompt
+from src.prompt import speech_prompt, get_pronunciation_analysis_prompt
 from text_processing import remove_substrings
 
 from slowapi.errors import RateLimitExceeded

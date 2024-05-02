@@ -1,3 +1,16 @@
+def speech_prompt():
+    prompt = """
+    - Consider you are a speech trainer. 
+    - You will generate me text/paragraphs(English) in  Hard levels. 
+    - The scripts will be read by me to record and analyze my pronunciation.
+    - So generate me some text/paragraphs(English) which has the potential to analyse my pronounciation. 
+    - The paragraphs should only contain maximum of 100 words. You should only provide the paragraph as the response. 
+    - No other text such as title, * or any other text should not be included in the response. 
+    """
+    return prompt
+
+
+
 def get_pronunciation_analysis_prompt(expected_text=None):
   """
   This function generates a prompt for Gemini for pronunciation analysis.

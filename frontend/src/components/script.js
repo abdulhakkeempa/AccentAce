@@ -6,22 +6,22 @@ export default function Text({ text, setText }) {
 
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   useEffect(() => {
     if (typeof window !== 'undefined' && isLoading) {
-      fetch('http://localhost:8000')
+      fetch(process.env.NEXT_PUBLIC_API_URL)
         .then(response => response.json())
         .then(data => {
           setText(data.speech);
-          setIsLoading(false);
+          setIsLoading(false); 
         })
         .catch((e) => {
           console.error(e)
-          setIsLoading(true);
+          setIsLoading(false); 
         });
     }
   }, [isLoading]);
-
+  
   const refreshText = () => {
     setIsLoading(true);
   };
