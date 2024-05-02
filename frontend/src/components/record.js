@@ -11,16 +11,19 @@ export default function Recorder({ onRecording }) {
   const [blobURL, setBlobURL] = useState('');
   const [isBlocked, setIsBlocked] = useState(false);
 
-  navigator.getUserMedia({ audio: true },
-    () => {
-      console.log('Permission Granted');
-      setIsBlocked(false);
-    },
-    () => {
-      console.log('Permission Denied');
-      setIsBlocked(true);
-    },
-  );
+  if (typeof window !== 'undefined') {
+    navigator.getUserMedia({ audio: true },
+      () => {
+        console.log('Permission Granted');
+        setIsBlocked(false);
+      },
+      () => {
+        console.log('Permission Denied');
+        setIsBlocked(true);
+      },
+    );
+  }
+  
 
   const startRecording = () => {
     if (!isBlocked) {
