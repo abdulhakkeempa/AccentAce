@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Form
+from fastapi import BackgroundTasks
 
 from dotenv import load_dotenv
 import os
@@ -37,6 +38,11 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 gemini = Gemini(api_key=os.environ['GEMINI_API_KEY'])
 
+async def delete_gemini_file_in_background(gemini, file_name):
+    print("Deleting file in background...")
+    gemini.delete_file(file_name)
+
+
 @app.get("/")
 @limiter.limit("5/minute")
 def root(request: Request) -> dict:
@@ -51,7 +57,7 @@ def root(request: Request) -> dict:
 
 @app.post("/analyse_voice")
 @limiter.limit("3/minute")
-async def analyse_voice(request: Request, speech_text: str = Form(...), audio_file: UploadFile=File(...)) -> dict:
+async def analyse_voice(background_tasks: BackgroundTasks, request: Request, speech_text: str = Form(...), audio_file: UploadFile=File(...)) -> dict:
     out_file_path = f"uploads/{audio_file.filename}"
     async with aiofiles.open(out_file_path, 'wb') as out_file:
         content = await audio_file.read()  
@@ -65,6 +71,9 @@ async def analyse_voice(request: Request, speech_text: str = Form(...), audio_fi
         result = gemini.infer(prompt, uploaded_file)
         result = remove_substrings(result, ["```", "json"])
         result = json.loads(result)
+        
+        background_tasks.add_task(delete_gemini_file_in_background, gemini, uploaded_file)
+ 
         return result
     except Exception as e:
         return {"error": f"An error occurred: {str(e)}", "status": 500}

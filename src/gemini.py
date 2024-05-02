@@ -25,6 +25,14 @@ class Gemini:
             raise Exception(f"{e}")
         return file
     
+    def delete_file(self, file_name):
+        try:
+            genai.delete_file(file_name)
+            print(f"Deleted file '{file_name}'")
+        except Exception as e:
+            raise Exception(f"{e}")
+
+
     def print_files_uploaded(self):
         for fileName, displayName in zip(self.files_uploaded, self.upload_files_display_names):
             print(f"Display Name: {displayName} => File Name: {fileName}")
