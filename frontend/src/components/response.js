@@ -20,10 +20,6 @@ export default function Response({ audioFile, speechText, realSpeech }) {
     }
   }, [audioFile]);
 
-  if (response.words) {
-    console.log(response.words);
-  }
-
   return (
     <div className="p-4 flex flex-col items-center">
       {response && (
