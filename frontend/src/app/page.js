@@ -50,7 +50,7 @@ export default function Home() {
         <button onClick={handleLogout} className='text-white p-2 rounded  bg-[#4285F4]'>Logout</button>
       </div>
       <p className="text-lg">Welcome, {user.displayName}</p>
-      <Title title="Ace your Accent ✨" subtitle="Your personal pronounciation helper ⚡"/>
+      <Title title="Ace your Accent ✨" subtitle="Your personal AI pronounciation helper ⚡"/>
       <Text text={text} setText={setText} />
       <Recorder onRecording={handleRecording} />
       <Response audioFile={audioFile} speechText={text}/>
