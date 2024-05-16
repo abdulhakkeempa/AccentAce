@@ -13,4 +13,7 @@ You can checkout out the [product](https://accent-ace.vercel.app/) here.
 - Authentication: Firebase (Google-Auth)
 - Deployment: Vercel (Frontend) + Google Cloud Run (Serverless Container for Backend)
 
+[![My Skills](https://skillicons.dev/icons?i=nextjs,tailwind,python,fastapi,gcp,firebase,docker,vercel)]()
+
+#### Build with ♥️ by [Abdul Hakkeem P A](https://www.linkedin.com/in/abdul-hakkeem-pa/)
   
