@@ -15,5 +15,21 @@ You can checkout out the [product](https://accent-ace.vercel.app/) here.
 
 [![My Skills](https://skillicons.dev/icons?i=nextjs,tailwind,python,fastapi,gcp,firebase,docker,vercel)]()
 
+## How to run this locally?
+1. Setting Up Frontend  
+1.1 Copy the `frontend/.env.local.example` file as `.env.local`.  
+1.2 Fill in the Firebase configuration values in the `.env.local` file.  
+
+2. Setting Up Backend  
+2.1 Copy the `backend/.env.example` file as `.env`.  
+2.2 Fill in the GEMINI API Key in the `.env` file.
+   
+3. Running the Application  
+3.1 Use `docker-compose` to start the application:  
+```
+docker-compose up
+```
+3.2 Once the application is running, you can access it locally at `http://localhost:3000`.
+
 #### Build with ♥️ by [Abdul Hakkeem P A](https://www.linkedin.com/in/abdul-hakkeem-pa/)
   
