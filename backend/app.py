@@ -21,7 +21,7 @@ load_dotenv()
 
 app = FastAPI()
 
-origins = ["https://accent-ace.vercel.app"]
+origins = ["https://accent-ace.vercel.app", "http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
