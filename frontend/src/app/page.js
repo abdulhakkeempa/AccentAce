@@ -46,7 +46,7 @@ export default function Home() {
   return (
     user && (
     <div className="container mx-auto p-4 h-screen flex flex-col items-center">
-      <div className="w-full flex justify-end">
+      <div className="w-full flex justify-end mb-4">
         <button onClick={handleLogout} className='text-white p-2 rounded  bg-[#4285F4]'>Logout</button>
       </div>
       <p className="text-lg">Welcome, {user.displayName}</p>

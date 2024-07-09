@@ -44,7 +44,7 @@ export default function Text({ text, setText }) {
   
   return (
     <div className="p-4 flex flex-col items-center">
-      <h1 className="md:text-2xl text-lg font-semibold mb-4">Text for analysing your pronounciation 📖</h1>
+      <h1 className="md:text-2xl text-base font-medium mb-4">Text for analysing your pronounciation 📖</h1>
       <div className='flex flex-col md:flex-row items-center'>
         <div className='max-w-screen-sm max-w-lg script-box p-7' style={{ height: 'auto', minHeight: '150px' }}>
           {isLoading ? (
@@ -61,7 +61,7 @@ export default function Text({ text, setText }) {
             <p className="text-justify text-base">{text}</p>
           )}
         </div>
-        <div className='ml-3 lg:pt-6 flex flex-row items-center'>
+        <div className='ml-3 lg:pt-6 mt-4 lg:mt-0 flex flex-row items-center'>
           <button onClick={speakText} className={`play-button ${isSpeaking ? 'stop' : 'play'}`}>
             {isSpeaking ? <i class="bi bi-stop-fill"></i> : <i class="bi bi-play-fill"></i>}
           </button>
