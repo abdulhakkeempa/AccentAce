@@ -31,7 +31,7 @@ body {
   color: #171717;
   background-color: #e2e2e2;
   border-radius: 10px;
-  width: clamp(400px, 100% - 20px, 100%);
+  width: clamp(320px, 100% - 30px, 100%);
   @media screen and (min-width: 768px) {
     min-width: 32rem !important;
     max-width: 32rem !important;
