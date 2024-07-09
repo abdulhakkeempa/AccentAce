@@ -51,9 +51,11 @@ export default function Home() {
       </div>
       <p className="text-lg">Welcome, {user.displayName}</p>
       <Title title="Ace your Accent ✨" subtitle="Your personal AI pronounciation helper ⚡"/>
-      <Text text={text} setText={setText} />
-      <Recorder onRecording={handleRecording} />
-      <Response audioFile={audioFile} speechText={text}/>
+      <div className="flex flex-col items-center">
+        <Text text={text} setText={setText} />
+        <Recorder onRecording={handleRecording} />
+        <Response audioFile={audioFile} speechText={text}/>
+      </div>
     </div>
   ));
 }

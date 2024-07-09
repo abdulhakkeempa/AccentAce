@@ -44,30 +44,30 @@ export default function Text({ text, setText }) {
   
   return (
     <div className="p-4 flex flex-col items-center">
-      <h1 className="text-2xl font-semibold mb-4">Text for analysing your pronounciation 📖</h1>
-      <div className='flex items-start'>
-      <div className='max-w-lg script-box p-7' style={{ height: 'auto', minHeight: '150px' }}>
-        {isLoading ? (
-          <div role="status" class="max-w-lg animate-pulse">
-            <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-4"></div>
-            <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
-            <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
-            <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
-            <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
-            <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg"></div>
-            <span class="sr-only">Loading...</span>
-          </div>
-        ) : (
-          <p className="text-justify text-base">{text}</p>
-        )}
+      <h1 className="md:text-2xl text-lg font-semibold mb-4">Text for analysing your pronounciation 📖</h1>
+      <div className='flex flex-col md:flex-row items-center'>
+        <div className='max-w-screen-sm max-w-lg script-box p-7' style={{ height: 'auto', minHeight: '150px' }}>
+          {isLoading ? (
+            <div role="status" class="max-w-lg animate-pulse">
+              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-4"></div>
+              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
+              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
+              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
+              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg mb-2.5"></div>
+              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-lg"></div>
+              <span class="sr-only">Loading...</span>
+            </div>
+          ) : (
+            <p className="text-justify text-base">{text}</p>
+          )}
         </div>
-        <div className='ml-3 lg:pt-6'>
-            <button onClick={speakText} className={`play-button ${isSpeaking ? 'stop' : 'play'}`}>
-              {isSpeaking ? <i class="bi bi-stop-fill"></i> : <i class="bi bi-play-fill"></i>}
-            </button>
-            <button onClick={refreshText} className="refresh-button">
-              <i class="bi bi-arrow-clockwise"></i>
-            </button>
+        <div className='ml-3 lg:pt-6 flex flex-row items-center'>
+          <button onClick={speakText} className={`play-button ${isSpeaking ? 'stop' : 'play'}`}>
+            {isSpeaking ? <i class="bi bi-stop-fill"></i> : <i class="bi bi-play-fill"></i>}
+          </button>
+          <button onClick={refreshText} className="refresh-button">
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
         </div>
       </div>
     </div>
