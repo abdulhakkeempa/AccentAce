@@ -70,7 +70,7 @@ async def analyse_voice(background_tasks: BackgroundTasks, request: Request, spe
         result = gemini.infer(prompt, uploaded_file)
         result = remove_substrings(result, ["```", "json"])
         result = json.loads(result)
-        
+        print(result)
         background_tasks.add_task(delete_gemini_file_in_background, gemini, uploaded_file)
  
         return result
