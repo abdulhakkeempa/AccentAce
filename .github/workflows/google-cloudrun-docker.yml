@@ -85,6 +85,7 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
+          token_format: 'access_token'
 
       - name: Mask and Log Auth Token
         run: |
