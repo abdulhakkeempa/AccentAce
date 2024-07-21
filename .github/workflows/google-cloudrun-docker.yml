@@ -87,13 +87,6 @@ jobs:
           credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
           token_format: 'access_token'
 
-      - name: Mask and Log Auth Token
-        run: |
-          echo "Masking access token"
-          echo "::add-mask::${{ steps.auth.outputs.access_token }}"
-          echo "Access token is: ${{ steps.auth.outputs.access_token }}"
-
-
       # BEGIN - Docker auth and build (NOTE: If you already have a container image, these Docker steps can be omitted)
 
       # Authenticate Docker to Google Cloud Artifact Registry
