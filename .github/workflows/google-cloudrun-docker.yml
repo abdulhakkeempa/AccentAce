@@ -101,6 +101,8 @@ jobs:
         env:
           ARTIFACT_REGISTRY_TOKEN: ${{ steps.auth.outputs.access_token }}
 
+      - name: List Files in Directory
+        run: ls -la
 
       - name: Build and Push Container
         run: |-
