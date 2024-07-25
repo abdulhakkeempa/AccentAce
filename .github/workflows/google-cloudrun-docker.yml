@@ -123,7 +123,7 @@ jobs:
 
       - name: Pull Secrets
         id: secrets
-        uses: google-github-actions/secrets@v2.0.0
+        uses: 'google-github-actions/get-secretmanager-secrets@v2'
         with:
           secrets: |
             GEMINI_API_KEY=${{ env.PROJECT_ID }}/projects/${{ env.SECRET_ID }}/secrets/${{ env.SECRET_NAME }}
