@@ -126,7 +126,7 @@ jobs:
         uses: 'google-github-actions/get-secretmanager-secrets@v2'
         with:
           secrets: |-
-            GEMINI_API_KEY=projects/${{ env.SECRET_ID }}/secrets/${{ env.SECRET_NAME }}/versions/latest
+            GEMINI_API_KEY: projects/${{ env.SECRET_ID }}/secrets/${{ env.SECRET_NAME }}/versions/latest
 
 
       - name: Deploy to Cloud Run
