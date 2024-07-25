@@ -137,8 +137,8 @@ jobs:
             --region="${{ env.GAR_LOCATION }}" \
             --platform=managed \
             --port=8080 \
+            --no-allow-unauthenticated \
             --set-env-vars=GEMINI_API_KEY=${{ steps.secrets.outputs.GEMINI_API_KEY }} \
-  
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
