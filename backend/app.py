@@ -17,6 +17,8 @@ from slowapi.util import get_remote_address
 import aiofiles
 import json
 
+import logging
+
 load_dotenv()
 
 app = FastAPI()
@@ -37,6 +39,8 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 gemini = Gemini(api_key=os.environ['GEMINI_API_KEY'])
 
+logging.basicConfig(level=logging.INFO)
+
 async def delete_gemini_file_in_background(gemini, file_name):
     print("Deleting file in background...")
     gemini.delete_file(file_name)
@@ -48,7 +52,9 @@ def root(request: Request) -> dict:
     prompt = speech_prompt()
     try:
         response = gemini.generate_content(prompt)
+        logging.info(response)
     except Exception as e:
+        logging.error(e)
         response = f"An error occurred: {str(e)}"
         return {"error": response, "status": 500}
     return {"speech": response}
@@ -71,10 +77,12 @@ async def analyse_voice(background_tasks: BackgroundTasks, request: Request, spe
         result = remove_substrings(result, ["```", "json"])
         result = json.loads(result)
         print(result)
+        logging.info(result)
         background_tasks.add_task(delete_gemini_file_in_background, gemini, uploaded_file)
  
         return result
     except Exception as e:
+        logging.error(e)
         return {"error": f"An error occurred: {str(e)}", "status": 500}
 
 if __name__ == "__main__":
