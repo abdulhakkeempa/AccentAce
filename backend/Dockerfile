@@ -12,4 +12,6 @@ RUN chmod 777 /code/uploads
 
 COPY ./ /code/
 
+ENV PORT 8080
+
 CMD ["python" , "app.py"]

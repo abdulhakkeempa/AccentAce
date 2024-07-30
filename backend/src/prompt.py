@@ -1,11 +1,6 @@
 def speech_prompt():
     prompt = """
-    - Consider you are a speech trainer. 
-    - You will generate me text/paragraphs(English) in  Hard levels. 
-    - The scripts will be read by me to record and analyze my pronunciation.
-    - So generate me some text/paragraphs(English) which has the potential to analyse my pronounciation. 
-    - The paragraphs should only contain maximum of 100 words. You should only provide the paragraph as the response. 
-    - No other text such as title, * or any other text should not be included in the response. 
+        As a speech trainer, generate one short paragraphs (under 50 words each) specifically designed to help me practice and improve my overall English pronunciation. These paragraphs should be rich in a variety of challenging sounds, including vowel and consonant combinations, and should progressively increase in difficulty. Please provide only the paragraphs in your response.    
     """
     return prompt
 
@@ -23,51 +18,60 @@ def get_pronunciation_analysis_prompt(expected_text=None):
   """
 
   prompt = f"""
-  My goal is to identify and analyze any potential pronunciation errors in the audio.
+  Goal: Identify and analyze potential pronunciation errors in a given audio clip.
 
-  Passage A (Expected Text): {expected_text}
+  Input:
 
-  Here's what I'd like you to do:
+    expected_text: A string containing the expected transcript of the audio. 
 
-  1. **Extract Text:**  Use your Automatic Speech Recognition (ASR) capabilities to extract text from this audio to (Passage B).
+    expected_text =  {expected_text}
 
-  2. **Analyze Pronunciation:**  Compare the extracted text (Passage B) with provided expected text (Passage A) with a standard pronunciation for the language used in the audio.
+  Instructions:
 
-  For each identified discrepancy:
+  1. Speech Recognition: Use Automatic Speech Recognition (ASR) to generate a text transcript (`extracted_text`) from the provided audio.
 
-  * Indicate the exact word/phrase where the discrepancy occurs in Passage B with respect to Passage A.
-  * Suggest the correct pronunciation for the identified word/phrase.  
-  * Analyze the potential reason for the error (if possible). This could include factors like phoneme confusion, stress or intonation issues, etc.
+  2. Pronunciation Comparison:  Compare `extracted_text` with the `expected_text`, using standard pronunciation rules for the language spoken in the audio.
 
-  Additionally, if you can identify any broader trends in the pronunciation errors (e.g., consistent vowel mispronunciations), please mention them.
-  Also, you should not give the Passage A as the extracted text, you should give the Passage B as extracted text in the below format.
-  Response:
+  3. Error Analysis:  For each pronunciation discrepancy found:
+    * Identify: Indicate the specific word/phrase in `extracted_text` that differs from `expected_text`.
+    * Correct: Provide the correct pronunciation of the mispronounced word/phrase.
+    * Explain (if possible): Briefly analyze the potential cause of the error (e.g., phoneme confusion, incorrect stress). 
 
-  You should provide me the response for this prompt in the form of a JSON. Strictly you should follow the JSON format as shown below:
+  4. Overall Trends (if any): Identify and describe any broader patterns in the pronunciation errors (e.g., consistent mispronunciation of a particular vowel sound).
+
+  5. Pronunciation Score: Assign an overall score (out of 10.0) reflecting the speaker's pronunciation accuracy.
+
+  6. Remarks: Provide constructive feedback and suggestions for improvement based on the analysis.
+
+  Response Format:
+  Return your analysis in the following JSON format:
 
   """ + """{
-    "extracted_text": "This is the extracted text",
+    "extracted_text": "This is the extracted text from the audio",
     "words": [
       {
-        "actual_word": "string",
-        "pronounced_word": "string",,
+        "actual_word": "correctly",
+        "pronounced_word": "currectly",
       },
       {
-        "actual_word": "string",
-        "pronounced_word": "string",
+        "actual_word": "photography",
+        "pronounced_word": "fotography",
       }
     ],
-    "score": Overall score for the pronounciation of the voice out of 10.0,
+    "score": 7.5,
     "remarks": "The remark the speaker should be provided for the pronunciation of the word"
   }""" + """
 
-  extracted_text: The extracted text from the audio.
-  words: A list of words/phrases identified as mispronounced.
-  actual_word: The word/phrase as it appears in the expected text.
-  pronounced_word: The word/phrase as it appears in the extracted text.
-  remarks: Any additional remarks or analysis on the pronunciation errors, suggestions and improvements required.
+  
+  Fields:
+  * "extracted_text": The ASR-generated transcript of the audio.
+  * "words": A list of objects, each representing a mispronounced word/phrase.
+      * "actual_word": The word/phrase as it appears in `expected_text`.
+      * "pronounced_word": The word/phrase as transcribed from the audio.
+  * "score":  An overall pronunciation score out of 10.0.
+  * "remarks": General remarks about the speaker's pronunciation and areas for improvement.
 
-  3. **Submit Response:** Submit the response in the specified JSON format. You should not alter any other part of the response. You should not include any parameters in the response such " ``` json " only the json format within curly braces should be given as the output".
+  Important: Provide only the JSON response. Do not include any extraneous text or formatting.
     
   """
   return prompt
